@@ -1,3 +1,4 @@
+import { useAuth } from "@/providers/Auth";
 import { Button } from "@material-tailwind/react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "/logo.png";
@@ -8,6 +9,7 @@ const navigations = [
 ];
 
 const Header = () => {
+  const { token, logout } = useAuth();
   const navigate = useNavigate();
 
   return (
@@ -29,13 +31,24 @@ const Header = () => {
               </li>
             ))}
             <li>
-              <Button
-                color="deep-orange"
-                size="lg"
-                onClick={() => navigate("/login")}
-              >
-                Login
-              </Button>
+              {!token ? (
+                <Button
+                  color="deep-orange"
+                  size="lg"
+                  onClick={() => navigate("/login")}
+                >
+                  Login
+                </Button>
+              ) : (
+                <Button
+                  color="deep-orange"
+                  variant="outlined"
+                  size="lg"
+                  onClick={logout}
+                >
+                  Logout
+                </Button>
+              )}
             </li>
           </ul>
         </nav>

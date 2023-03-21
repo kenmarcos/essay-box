@@ -16,6 +16,7 @@ interface AuthProviderData {
     navigate: NavigateFunction,
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => Promise<void>;
+  logout: () => void;
 }
 
 export const AuthContext = createContext<AuthProviderData>(
@@ -49,8 +50,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setIsLoading(false);
   };
 
+  const logout = async () => {
+    storage.clearToken();
+    setToken("");
+  };
+
   return (
-    <AuthContext.Provider value={{ token, login }}>
+    <AuthContext.Provider value={{ token, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
