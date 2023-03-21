@@ -1,7 +1,13 @@
 import { api } from "@/services";
 import { LoginFormData } from "@/types";
 import storage from "@/utils/storage";
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { toast } from "react-hot-toast";
 import { NavigateFunction } from "react-router-dom";
 
@@ -10,7 +16,7 @@ interface AuthProviderProps {
 }
 
 interface AuthProviderData {
-  token: string;
+  user: { id: string; token: string };
   login: (
     data: LoginFormData,
     navigate: NavigateFunction,
@@ -24,7 +30,7 @@ export const AuthContext = createContext<AuthProviderData>(
 );
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [token, setToken] = useState(storage.getToken() || "");
+  const [user, setUser] = useState(storage.getUser() || "");
 
   const login = async (
     data: LoginFormData,
@@ -36,27 +42,31 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     try {
       const response = await api.post("/auth/login", data);
 
-      const token = response.data.access_token;
+      const user = {
+        id: response.data.aluno_id,
+        token: response.data.access_token,
+      };
 
-      storage.setToken(token);
-      setToken(token);
+      setUser(user);
+      storage.setUser(user);
 
       navigate("/dashboard");
 
       toast.success("Login realizado com sucesso!");
     } catch (error) {
       toast.error("Ocorreu um erro! Verifique seus dados e tente novamente.");
+      console.log(error);
     }
     setIsLoading(false);
   };
 
   const logout = async () => {
-    storage.clearToken();
-    setToken("");
+    storage.clearUser();
+    setUser({ id: "", token: "" });
   };
 
   return (
-    <AuthContext.Provider value={{ token, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

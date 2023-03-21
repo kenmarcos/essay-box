@@ -28,6 +28,7 @@ const Login = () => {
 
   const onSubmit = (data: LoginFormData) => {
     login(data, navigate, setIsLoading);
+    // console.log(data);
   };
 
   return (

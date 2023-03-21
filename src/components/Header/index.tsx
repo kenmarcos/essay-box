@@ -9,11 +9,11 @@ const navigations = [
 ];
 
 const Header = () => {
-  const { token, logout } = useAuth();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
 
   return (
-    <header className="w-screen h-16 shadow-lg fixed bg-primary-500 px-4">
+    <header className="w-screen h-16 shadow-lg fixed bg-primary-500 px-4 z-50">
       <div className="max-w-6xl mx-auto flex h-full justify-between">
         <figure className="w-28 flex items-center">
           <Link to="/">
@@ -31,7 +31,7 @@ const Header = () => {
               </li>
             ))}
             <li>
-              {!token ? (
+              {!user?.token ? (
                 <Button
                   color="deep-orange"
                   size="lg"

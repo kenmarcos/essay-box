@@ -2,13 +2,13 @@ import { useAuth } from "@/providers/Auth";
 import { Navigate, Outlet } from "react-router-dom";
 
 export const PrivateRoute = () => {
-  const { token } = useAuth();
+  const { user } = useAuth();
 
-  return token ? <Outlet /> : <Navigate to="/" />;
+  return user.token ? <Outlet /> : <Navigate to="/" />;
 };
 
 export const PublicRoute = () => {
-  const { token } = useAuth();
+  const { user } = useAuth();
 
-  return token ? <Navigate to="/dashboard" /> : <Outlet />;
+  return user.token ? <Navigate to="/dashboard" /> : <Outlet />;
 };

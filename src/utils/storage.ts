@@ -1,16 +1,18 @@
+import { User } from "@/types";
+
 const storagePrefix = "@essaybox:";
 
 const storage = {
-  getToken: () => {
+  getUser: () => {
     return JSON.parse(
-      window.localStorage.getItem(`${storagePrefix}token`) as string
+      window.localStorage.getItem(`${storagePrefix}user`) as string
     );
   },
-  setToken: (token: string) => {
-    window.localStorage.setItem(`${storagePrefix}token`, JSON.stringify(token));
+  setUser: (user: User) => {
+    window.localStorage.setItem(`${storagePrefix}user`, JSON.stringify(user));
   },
-  clearToken: () => {
-    window.localStorage.removeItem(`${storagePrefix}token`);
+  clearUser: () => {
+    window.localStorage.removeItem(`${storagePrefix}user`);
   },
 };
 

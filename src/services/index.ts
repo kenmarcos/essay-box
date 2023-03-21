@@ -6,10 +6,10 @@ export const api = axios.create({
 });
 
 const authRequestInterceptor = (config: InternalAxiosRequestConfig) => {
-  const token = storage.getToken();
+  const user = storage.getUser();
 
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+  if (user?.token) {
+    config.headers.Authorization = `Bearer ${user?.token}`;
   }
 
   config.headers.Accept = "application/json";
