@@ -10,8 +10,9 @@ const Router = () => {
   return (
     <Routes>
       <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
+
         <Route element={<PublicRoute />}>
-          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
         </Route>
 

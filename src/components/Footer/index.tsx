@@ -7,7 +7,7 @@ const Footer = () => {
 
   return (
     <footer className="h-16 px-4 bg-primary-400">
-      <div className="max-w-6xl mx-auto flex items-center h-full text-secondary-400">
+      <div className="max-w-6xl mx-auto flex items-center gap-2 h-full text-secondary-400">
         <p className="max-w-md mx-auto text-center ">
           {currentYear} — Desenvolvido por Marcos Kenji Kuribayashi 😉
         </p>

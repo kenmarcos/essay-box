@@ -24,20 +24,33 @@ const Header = () => {
 
         <nav>
           <ul className="flex h-full items-center gap-4">
-            {navigations.map((navItem) => (
-              <li key={navItem.label}>
+            <li>
+              <Link
+                to="/"
+                className={
+                  location.pathname === "/"
+                    ? "text-secondary-500 font-bold text-lg"
+                    : "text-white"
+                }
+              >
+                Home
+              </Link>
+            </li>
+
+            {!!user.token && (
+              <li>
                 <Link
-                  to={navItem.path}
+                  to="/dashboard"
                   className={
-                    location.pathname === navItem.path
+                    location.pathname === "/dashboard"
                       ? "text-secondary-500 font-bold text-lg"
                       : "text-white"
                   }
                 >
-                  {navItem.label}
+                  Dashboard
                 </Link>
               </li>
-            ))}
+            )}
             <li>
               {!user?.token ? (
                 <Button color="secondary" onClick={() => navigate("/login")}>
