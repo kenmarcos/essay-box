@@ -13,3 +13,24 @@ export interface Essay {
   numero: number;
   created_at: string;
 }
+
+interface Student {
+  id: string;
+  nome_completo: string;
+}
+
+interface Url {
+  id: string;
+  redacao_id: string;
+  correcao_id: string;
+  url: string;
+  anotacoes: string;
+  comentarios: string;
+}
+export interface EssayDetails {
+  id: string;
+  aluno: Student;
+  numero: number;
+  created_at: string;
+  urls: Url[];
+}

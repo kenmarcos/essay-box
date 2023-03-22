@@ -55,7 +55,11 @@ const EssayCard = (props: EssaCardProps) => {
         <div className="mt-4 flex space-x-3 lg:mt-6">
           <Button
             color="purple"
-            onClick={() => navigate(`/dashboard/essay/${props.essay.id}`)}
+            onClick={() =>
+              navigate("/dashboard/essay", {
+                state: { essayId: props.essay.id },
+              })
+            }
           >
             Visualizar
           </Button>
