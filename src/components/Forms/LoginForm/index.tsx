@@ -30,16 +30,13 @@ const LoginForm = () => {
   };
   return (
     <div>
-      <Typography variant="h4" color="blue-gray" className="text-center">
+      <h4 color="blue-gray" className="text-center">
         Bem-vindo(a)!
-      </Typography>
-      <Typography
-        color="gray"
-        className="mt-1 font-normal text-center max-w-sm"
-      >
+      </h4>
+      <p color="gray" className="mt-1 font-normal text-center max-w-sm">
         Por favor, faça o login abaixo com suas informações para acessar a sua
         conta.
-      </Typography>
+      </p>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="mt-8 mb-2 max-w-screen-lg"
