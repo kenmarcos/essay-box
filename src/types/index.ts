@@ -19,7 +19,7 @@ interface Student {
   nome_completo: string;
 }
 
-interface Url {
+export interface Url {
   id: string;
   redacao_id: string;
   correcao_id: string;
@@ -33,4 +33,14 @@ export interface EssayDetails {
   numero: number;
   created_at: string;
   urls: Url[];
+}
+
+export interface EssayAddFormData {
+  file: File;
+}
+
+export interface EssayEditFormData {
+  essayId: string;
+  urlId: string;
+  file: File;
 }

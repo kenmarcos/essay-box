@@ -1,13 +1,7 @@
 import { api } from "@/services";
 import { LoginFormData } from "@/types";
 import storage from "@/utils/storage";
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import { NavigateFunction } from "react-router-dom";
 

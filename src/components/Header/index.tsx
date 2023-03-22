@@ -1,6 +1,6 @@
 import { useAuth } from "@/providers/Auth";
-import { Button } from "@material-tailwind/react";
-import { Link, useNavigate } from "react-router-dom";
+import { Button } from "flowbite-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "/logo.png";
 
 const navigations = [
@@ -11,6 +11,7 @@ const navigations = [
 const Header = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <header className="w-screen h-16 shadow-lg fixed bg-primary-500 px-4 z-50">
@@ -25,27 +26,25 @@ const Header = () => {
           <ul className="flex h-full items-center gap-4">
             {navigations.map((navItem) => (
               <li key={navItem.label}>
-                <Link to={navItem.path} className="text-white font-bold">
+                <Link
+                  to={navItem.path}
+                  className={
+                    location.pathname === navItem.path
+                      ? "text-secondary-500 font-bold text-lg"
+                      : "text-white"
+                  }
+                >
                   {navItem.label}
                 </Link>
               </li>
             ))}
             <li>
               {!user?.token ? (
-                <Button
-                  color="deep-orange"
-                  size="lg"
-                  onClick={() => navigate("/login")}
-                >
+                <Button color="secondary" onClick={() => navigate("/login")}>
                   Login
                 </Button>
               ) : (
-                <Button
-                  color="deep-orange"
-                  variant="outlined"
-                  size="lg"
-                  onClick={logout}
-                >
+                <Button color="secondary" outline onClick={logout}>
                   Logout
                 </Button>
               )}
