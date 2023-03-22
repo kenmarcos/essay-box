@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "@/styles/index.css";
 import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from "@material-tailwind/react";
 import Providers from "./providers";
 import { CustomFlowbiteTheme, Flowbite } from "flowbite-react";
 
@@ -37,13 +36,11 @@ const theme: CustomFlowbiteTheme = {
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <Providers>
-      <ThemeProvider>
-        <Flowbite theme={{ theme }}>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </Flowbite>
-      </ThemeProvider>
+      <Flowbite theme={{ theme }}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Flowbite>
     </Providers>
   </React.StrictMode>
 );
