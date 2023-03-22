@@ -77,6 +77,7 @@ const LoginForm = () => {
               placeholder="Digite sua senha"
               color={errors.password?.message ? "failure" : "gray"}
               disabled={isLoading}
+              type="password"
             />
             {!!errors.password?.message && (
               <small className="text-red-500">{errors.password.message}</small>

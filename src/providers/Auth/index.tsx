@@ -57,6 +57,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const logout = async () => {
     storage.clearUser();
     setUser({ id: "", token: "" });
+    toast.success("Até breve!");
   };
 
   return (
