@@ -78,12 +78,19 @@ const Essay = () => {
 
           {!isLoadingEssays && !!essayDetails.urls && (
             <Card className="max-w-3xl mx-auto">
-              <figure className="flex justify-center">
-                <img
-                  src={essayUrl.url}
-                  alt={`imagem da redação #${essayDetails.numero}`}
-                />
-              </figure>
+              {(essayUrl.url.split(".").pop() === "jpg" ||
+                essayUrl.url.split(".").pop() === "png") && (
+                <figure className="flex justify-center">
+                  <img
+                    src={essayUrl.url}
+                    alt={`imagem da redação #${essayDetails.numero}`}
+                  />
+                </figure>
+              )}
+
+              {essayUrl.url.split(".").pop() === "pdf" && (
+                <iframe src={essayUrl.url} className="h-96 md:h-[800px]" />
+              )}
             </Card>
           )}
         </section>
